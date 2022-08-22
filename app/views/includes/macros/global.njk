@@ -1,0 +1,14 @@
+{% macro versionStatus(current = '', latest = '') %}
+Version {{ current | versionDisplay }}
+<span class="version-status-badge">
+    {% if latest === current %}
+        <strong class="govuk-tag govuk-tag--orange">
+            latest
+        </strong>
+    {% else %}
+        <strong class="govuk-tag govuk-tag--grey">
+            stable
+        </strong>
+    {% endif %}
+</span>
+{% endmacro -%}

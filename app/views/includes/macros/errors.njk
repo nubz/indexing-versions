@@ -1,0 +1,19 @@
+{% from "govuk/components/error-summary/macro.njk"       import govukErrorSummary %}
+
+{% macro summary(data = {}) %}
+    {% if data.errors %}
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: data.errors
+        })    }}
+    {% endif %}
+{% endmacro %}
+
+{% macro inline(data = {}) %}
+    {% if data.errors[data.key] %}
+        <span id="{{ data.key }}-error-inline" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error: </span>
+        {{ data.errors[data.key].text }}
+      </span>
+    {% endif %}
+{% endmacro %}

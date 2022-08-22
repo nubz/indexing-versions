@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        {{ errorMacros.summary({errors: errors.summary}) }}
+        <h1 class="govuk-heading-xl">
+            Create a new version onto your machine
+        </h1>
+        <p class="govuk-body">
+            Creating a new version of the prototype will clone the version you are copying, and mark the old version as "stable" indicating that it should not change any more.
+            The new version you create will become the latest version for ongoing design work. All configuration and routes files should be updated automatically.
+        </p>
+        <p class="govuk-body">
+            As the new version is created solely on your local machine, it will still need to be added and committed to git before
+            anyone else can work on it or publish it to the live environment.
+        </p>
+        <form action="?" method="post">
+            <div class="govuk-form-group{% if errors.inline['old-version'] %} govuk-form-group--error{% endif %}">
+                <label class="govuk-label govuk-label--m" for="old-version">
+                    Name of old version to copy
+                </label>
+                <div class="govuk-hint">
+                    Use the exact name of the folder to copy, for example {{ latestVersion }}
+                </div>
+                {{ errorMacros.inline({errors: errors.inline, key: 'old-version'}) }}
+                <input
+                        class="govuk-input govuk-input--width-5{% if errors.inline['old-version'] %} govuk-input--error{% endif %}"
+                        id="old-version"
+                        name="old-version"
+                        type="text"
+                        value="{{ data['old-version'] }}"
+                >
+            </div>
+            <div class="govuk-form-group{% if errors.inline['new-version'] %} govuk-form-group--error{% endif %}">
+                <label class="govuk-label govuk-label--m" for="new-version">
+                    New version name
+                </label>
+                {{ errorMacros.inline({errors: errors.inline, key: 'new-version'}) }}
+                <input
+                        class="govuk-input govuk-input--width-5{% if errors.inline['new-version'] %} govuk-input--error{% endif %}"
+                        id="new-version"
+                        name="new-version"
+                        type="text"
+                        value="{{ data['new-version'] }}"
+                >
+            </div>
+
+            <p class="govuk-body govuk-inset-text">
+                The automation may involve your local server restarting with a momentary connection error that should resolve, if not then manually navigate back to the prototype home to see the new version.
+            </p>
+
+            <button class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

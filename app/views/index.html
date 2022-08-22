@@ -1,0 +1,45 @@
+
+{% extends "layout.html" %}
+{% import "includes/macros/global.njk" as global %}
+
+{% block pageTitle %}
+{{ serviceName }}
+{% endblock %}
+
+{% block header %}
+{{ govukHeader({
+homepageUrl: "/",
+serviceName: serviceName,
+serviceUrl: "/",
+containerClasses: "govuk-width-container"
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Prototype"
+},
+html: 'This is not a live service.'
+})
+}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+    <h1 class="govuk-heading-xl">{{ serviceName }}</h1>
+    {% include version + '/index.html' %}
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <h2 class="govuk-heading-l app-related-items">Versions</h2>
+    <ul class="govuk-list">
+      <li><a href="/1-0" class="govuk-link">1.0</a></li>
+    </ul>
+  </div>
+</div>
+
+
+{% endblock %}

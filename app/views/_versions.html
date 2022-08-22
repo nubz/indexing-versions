@@ -1,0 +1,44 @@
+
+{% extends "layout.html" %}
+{% import "includes/macros/global.njk" as global %}
+
+{% block pageTitle %}
+{{ serviceName }}
+{% endblock %}
+
+{% block header %}
+{{ govukHeader({
+homepageUrl: "/",
+serviceName: serviceName,
+serviceUrl: "/",
+containerClasses: "govuk-width-container"
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "Prototype"
+},
+html: 'This is not a live service.'
+})
+}}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:history.go(-1)"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-xl">Versions of {{ page }}</h1>
+<div class="govuk-grid-row">
+    {% for p in urls %}
+        <div class="govuk-grid-column-one-half">
+            <p class="govuk-body"><a href="/{{ p.url }}">Version {{ p.version }}</a></p>
+            <div class="page-version"><iframe src="/{{ p.url }}#main-content" frameborder="0"></iframe></div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
