@@ -7,6 +7,16 @@ prototype kit, overwriting the existing ones. Then run `npm install` to ensure a
 required dependencies are installed. Your new prototype should be ready to start 
 populating with content into an empty version 1-0 folder.
 
+## Index tabs
+
+This indexing system uses a tab based interface for each version's index view. The tabs are defined in the
+index.html file within each version and each tab's content is a single html partial filed in the _index-tabs
+folder inside each version. They can of course be hand coded into the index file, but experience of doing this
+results in a long unwieldy page to maintain as it's copied forward into new versions, single focussed files are
+easier to maintain. As the prototype owner you can add more tabs to the defined html structure in index.html
+and populate as you see fit, you are also free to remove tabs and their related partial, it will not break 
+anything.
+
 ### Maintaining _index-tabs/_pages.html
 As you create new templates add corresponding links to view them in the index-tabs/_pages.html file
 within the version folder, using class names `new-page` and `changed-page` will add badges to the links
@@ -28,7 +38,7 @@ service pages you can extend `layout-with-back-link.html` and `layout-without-ba
 use the comparison tool. The tool looks for all versions of the same file name and renders them into a grid of 
 iframes for instant comparison.
 
-#### Creating a new version
+## Creating a new version
 At the time of writing the new version automation still has a glitchy outcome, the link is in the footer of the main
 index page when rendered on localhost and it almost always clones the old version you specify into a new version folder,
 and almost always updates the index page with a link to the new version and almost always updates the latest version
